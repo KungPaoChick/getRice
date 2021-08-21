@@ -40,7 +40,6 @@ class Rice:
                     if image['href'].endswith(('.png', 'jpg')) and not image['href'] in images:
                         images.append(image['href'])
 
-
         if not os.path.exists(self.environment):
             os.mkdir(self.environment)
         
