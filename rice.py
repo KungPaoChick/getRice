@@ -14,7 +14,7 @@ class Rice:
 
     def mk_request(self):
         try:
-            url = f"https://www.reddit.com/r/unixporn/search/?q={self.environment}&restrict_sr=1"
+            url = f"https://www.reddit.com/r/unixporn/search/?q={self.environment}&restrict_sr=1&t=all&sort=hot"
             with requests.get(url) as response:
                 if response.status_code == 200:
                     print("[OK]")
@@ -39,6 +39,10 @@ class Rice:
                 for image in content.findAll('a'):
                     if image['href'].endswith(('.png', 'jpg')) and not image['href'] in images:
                         images.append(image['href'])
+
+            if req == 10:
+                print(f'Could not find anything for: "{self.environment}"')
+                break
 
         if not os.path.exists(self.environment):
             os.mkdir(self.environment)
